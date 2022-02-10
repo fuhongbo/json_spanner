@@ -1,0 +1,409 @@
+
+state 0
+	$accept: .QUERIES $end 
+	WHERE_CONDITION: .    (17)
+
+	SELECT  shift 4
+	WHERE  shift 6
+	.  reduce 17 (src line 138)
+
+	QUERIES  goto 1
+	STATEMENT  goto 2
+	SELECT_STATEMENT  goto 3
+	WHERE_CONDITION  goto 5
+
+state 1
+	$accept:  QUERIES.$end 
+
+	$end  accept
+	.  error
+
+
+state 2
+	QUERIES:  STATEMENT.    (1)
+
+	.  reduce 1 (src line 63)
+
+
+state 3
+	STATEMENT:  SELECT_STATEMENT.    (2)
+
+	.  reduce 2 (src line 67)
+
+
+state 4
+	SELECT_STATEMENT:  SELECT.FIELDS FROM SOURCE WHERE_CONDITION 
+	SELECT_STATEMENT:  SELECT.FIELDS WHERE_CONDITION 
+
+	NAME  shift 9
+	INTEGER  shift 12
+	FLOAT  shift 11
+	STRING  shift 10
+	.  error
+
+	FIELD  goto 8
+	FIELDS  goto 7
+
+state 5
+	SELECT_STATEMENT:  WHERE_CONDITION.    (5)
+
+	.  reduce 5 (src line 88)
+
+
+state 6
+	WHERE_CONDITION:  WHERE.CONDITION 
+
+	LEFTC  shift 14
+	NAME  shift 16
+	INTEGER  shift 18
+	FLOAT  shift 19
+	STRING  shift 17
+	.  error
+
+	CONDITION  goto 13
+	CONDITION_VAR  goto 15
+
+state 7
+	SELECT_STATEMENT:  SELECT FIELDS.FROM SOURCE WHERE_CONDITION 
+	SELECT_STATEMENT:  SELECT FIELDS.WHERE_CONDITION 
+	WHERE_CONDITION: .    (17)
+
+	FROM  shift 20
+	WHERE  shift 6
+	.  reduce 17 (src line 138)
+
+	WHERE_CONDITION  goto 21
+
+state 8
+	FIELDS:  FIELD.    (6)
+	FIELDS:  FIELD.COMMA FIELDS 
+
+	COMMA  shift 22
+	.  reduce 6 (src line 98)
+
+
+state 9
+	FIELD:  NAME.ALIAS 
+	ALIAS: .    (12)
+
+	AS  shift 24
+	.  reduce 12 (src line 119)
+
+	ALIAS  goto 23
+
+state 10
+	FIELD:  STRING.ALIAS 
+	ALIAS: .    (12)
+
+	AS  shift 24
+	.  reduce 12 (src line 119)
+
+	ALIAS  goto 25
+
+state 11
+	FIELD:  FLOAT.ALIAS 
+	ALIAS: .    (12)
+
+	AS  shift 24
+	.  reduce 12 (src line 119)
+
+	ALIAS  goto 26
+
+state 12
+	FIELD:  INTEGER.ALIAS 
+	ALIAS: .    (12)
+
+	AS  shift 24
+	.  reduce 12 (src line 119)
+
+	ALIAS  goto 27
+
+state 13
+	WHERE_CONDITION:  WHERE CONDITION.    (16)
+	CONDITION:  CONDITION.AND CONDITION 
+	CONDITION:  CONDITION.OR CONDITION 
+
+	OR  shift 29
+	AND  shift 28
+	.  reduce 16 (src line 135)
+
+
+state 14
+	CONDITION:  LEFTC.CONDITION RIGHTC 
+
+	LEFTC  shift 14
+	NAME  shift 16
+	INTEGER  shift 18
+	FLOAT  shift 19
+	STRING  shift 17
+	.  error
+
+	CONDITION  goto 30
+	CONDITION_VAR  goto 15
+
+state 15
+	CONDITION:  CONDITION_VAR.OPERATOR CONDITION_VAR 
+
+	EQ  shift 32
+	NEQ  shift 33
+	LT  shift 34
+	LTE  shift 35
+	GT  shift 36
+	GTE  shift 37
+	TLIKE  shift 38
+	.  error
+
+	OPERATOR  goto 31
+
+state 16
+	CONDITION_VAR:  NAME.    (29)
+
+	.  reduce 29 (src line 180)
+
+
+state 17
+	CONDITION_VAR:  STRING.    (30)
+
+	.  reduce 30 (src line 183)
+
+
+state 18
+	CONDITION_VAR:  INTEGER.    (31)
+
+	.  reduce 31 (src line 186)
+
+
+state 19
+	CONDITION_VAR:  FLOAT.    (32)
+
+	.  reduce 32 (src line 189)
+
+
+state 20
+	SELECT_STATEMENT:  SELECT FIELDS FROM.SOURCE WHERE_CONDITION 
+
+	NAME  shift 40
+	STRING  shift 41
+	.  error
+
+	SOURCE  goto 39
+
+state 21
+	SELECT_STATEMENT:  SELECT FIELDS WHERE_CONDITION.    (4)
+
+	.  reduce 4 (src line 80)
+
+
+state 22
+	FIELDS:  FIELD COMMA.FIELDS 
+
+	NAME  shift 9
+	INTEGER  shift 12
+	FLOAT  shift 11
+	STRING  shift 10
+	.  error
+
+	FIELD  goto 8
+	FIELDS  goto 42
+
+state 23
+	FIELD:  NAME ALIAS.    (8)
+
+	.  reduce 8 (src line 106)
+
+
+state 24
+	ALIAS:  AS.NAME 
+
+	NAME  shift 43
+	.  error
+
+
+state 25
+	FIELD:  STRING ALIAS.    (9)
+
+	.  reduce 9 (src line 109)
+
+
+state 26
+	FIELD:  FLOAT ALIAS.    (10)
+
+	.  reduce 10 (src line 112)
+
+
+state 27
+	FIELD:  INTEGER ALIAS.    (11)
+
+	.  reduce 11 (src line 115)
+
+
+state 28
+	CONDITION:  CONDITION AND.CONDITION 
+
+	LEFTC  shift 14
+	NAME  shift 16
+	INTEGER  shift 18
+	FLOAT  shift 19
+	STRING  shift 17
+	.  error
+
+	CONDITION  goto 44
+	CONDITION_VAR  goto 15
+
+state 29
+	CONDITION:  CONDITION OR.CONDITION 
+
+	LEFTC  shift 14
+	NAME  shift 16
+	INTEGER  shift 18
+	FLOAT  shift 19
+	STRING  shift 17
+	.  error
+
+	CONDITION  goto 45
+	CONDITION_VAR  goto 15
+
+state 30
+	CONDITION:  LEFTC CONDITION.RIGHTC 
+	CONDITION:  CONDITION.AND CONDITION 
+	CONDITION:  CONDITION.OR CONDITION 
+
+	RIGHTC  shift 46
+	OR  shift 29
+	AND  shift 28
+	.  error
+
+
+state 31
+	CONDITION:  CONDITION_VAR OPERATOR.CONDITION_VAR 
+
+	NAME  shift 16
+	INTEGER  shift 18
+	FLOAT  shift 19
+	STRING  shift 17
+	.  error
+
+	CONDITION_VAR  goto 47
+
+state 32
+	OPERATOR:  EQ.    (22)
+
+	.  reduce 22 (src line 157)
+
+
+state 33
+	OPERATOR:  NEQ.    (23)
+
+	.  reduce 23 (src line 160)
+
+
+state 34
+	OPERATOR:  LT.    (24)
+
+	.  reduce 24 (src line 163)
+
+
+state 35
+	OPERATOR:  LTE.    (25)
+
+	.  reduce 25 (src line 166)
+
+
+state 36
+	OPERATOR:  GT.    (26)
+
+	.  reduce 26 (src line 169)
+
+
+state 37
+	OPERATOR:  GTE.    (27)
+
+	.  reduce 27 (src line 172)
+
+
+state 38
+	OPERATOR:  TLIKE.    (28)
+
+	.  reduce 28 (src line 175)
+
+
+state 39
+	SELECT_STATEMENT:  SELECT FIELDS FROM SOURCE.WHERE_CONDITION 
+	WHERE_CONDITION: .    (17)
+
+	WHERE  shift 6
+	.  reduce 17 (src line 138)
+
+	WHERE_CONDITION  goto 48
+
+state 40
+	SOURCE:  NAME.    (14)
+
+	.  reduce 14 (src line 127)
+
+
+state 41
+	SOURCE:  STRING.    (15)
+
+	.  reduce 15 (src line 130)
+
+
+state 42
+	FIELDS:  FIELD COMMA FIELDS.    (7)
+
+	.  reduce 7 (src line 101)
+
+
+state 43
+	ALIAS:  AS NAME.    (13)
+
+	.  reduce 13 (src line 122)
+
+
+state 44
+	CONDITION:  CONDITION.AND CONDITION 
+	CONDITION:  CONDITION AND CONDITION.    (20)
+	CONDITION:  CONDITION.OR CONDITION 
+
+	.  reduce 20 (src line 149)
+
+
+state 45
+	CONDITION:  CONDITION.AND CONDITION 
+	CONDITION:  CONDITION.OR CONDITION 
+	CONDITION:  CONDITION OR CONDITION.    (21)
+
+	AND  shift 28
+	.  reduce 21 (src line 152)
+
+
+state 46
+	CONDITION:  LEFTC CONDITION RIGHTC.    (18)
+
+	.  reduce 18 (src line 143)
+
+
+state 47
+	CONDITION:  CONDITION_VAR OPERATOR CONDITION_VAR.    (19)
+
+	.  reduce 19 (src line 146)
+
+
+state 48
+	SELECT_STATEMENT:  SELECT FIELDS FROM SOURCE WHERE_CONDITION.    (3)
+
+	.  reduce 3 (src line 72)
+
+
+30 terminals, 12 nonterminals
+33 grammar rules, 49/16000 states
+0 shift/reduce, 0 reduce/reduce conflicts reported
+61 working sets used
+memory: parser 24/240000
+11 extra closures
+58 shift entries, 1 exceptions
+21 goto entries
+4 entries saved by goto default
+Optimizer space used: output 57/240000
+57 table entries, 0 zero
+maximum spread: 25, maximum offset: 39
