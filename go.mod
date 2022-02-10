@@ -1,4 +1,4 @@
-module json_spanner
+module github.com/fuhongbo/json_spanner
 
 go 1.17
 

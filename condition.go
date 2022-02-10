@@ -2,9 +2,9 @@ package json_spanner
 
 import (
 	"fmt"
+	parser "github.com/fuhongbo/json_spanner/parser"
+	"github.com/fuhongbo/json_spanner/wildcard"
 	"github.com/tidwall/gjson"
-	parser "json_spanner/parser"
-	"json_spanner/wildcard"
 	"reflect"
 )
 
