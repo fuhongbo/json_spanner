@@ -2,7 +2,7 @@ package json_spanner
 
 import (
 	"errors"
-	parser "github.com/fuhongbo/json_spanner/parser"
+	"github.com/fuhongbo/json_spanner/parser"
 	"github.com/tidwall/gjson"
 	"github.com/tidwall/sjson"
 )
