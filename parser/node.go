@@ -134,6 +134,8 @@ func opToStr(op int) string {
 		return "-"
 	case STAR:
 		return "*"
+	case TLIKE:
+		return "=~"
 	case COMMA:
 		return ","
 	case SEMICOLON:
