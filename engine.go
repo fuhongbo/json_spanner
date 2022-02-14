@@ -4,7 +4,6 @@ import (
 	"errors"
 	"github.com/fuhongbo/json_spanner/parser"
 	"github.com/tidwall/gjson"
-	"github.com/tidwall/sjson"
 )
 
 type Engine struct {
@@ -63,26 +62,32 @@ func (e *Engine) Transform(json string) (match bool, result string, err error) {
 
 	if e.valid(&jsonPath) {
 
-		resultJson := `{}`
+		b := NewBuilder()
+		//resultJson := `{}`
 
 		for _, item := range e.selectStatement.Fields {
 			switch item.Type {
 			case "NAME":
 				if item.Alias != "" {
-					resultJson, _ = sjson.Set(resultJson, item.Alias, jsonPath.Get(item.Name).Value())
+					b.Set(item.Alias, jsonPath.Get(item.Name).Value())
+					//resultJson, _ = sjson.Set(resultJson, item.Alias, jsonPath.Get(item.Name).Value())
 				} else {
-					resultJson, _ = sjson.Set(resultJson, item.Name, jsonPath.Get(item.Name).Value())
+					b.Set(item.Name, jsonPath.Get(item.Name).Value())
+					//resultJson, _ = sjson.Set(resultJson, item.Name, jsonPath.Get(item.Name).Value())
 				}
 			case "STRING":
-				resultJson, _ = sjson.Set(resultJson, item.Alias, item.ValueString)
+				b.Set(item.Alias, item.ValueString)
+				//resultJson, _ = sjson.Set(resultJson, item.Alias, item.ValueString)
 			case "FLOAT":
-				resultJson, _ = sjson.Set(resultJson, item.Alias, item.ValueFloat)
+				b.Set(item.Alias, item.ValueFloat)
+				//resultJson, _ = sjson.Set(resultJson, item.Alias, item.ValueFloat)
 			case "INT":
-				resultJson, _ = sjson.Set(resultJson, item.Alias, item.ValueInt)
+				b.Set(item.Alias, item.ValueInt)
+				//resultJson, _ = sjson.Set(resultJson,)
 			}
 		}
 
-		return true, resultJson, nil
+		return true, b.ToJson(), nil
 
 	} else {
 		return false, "", errors.New("Data does not match filter criteria . ")
