@@ -41,6 +41,17 @@ func (e *Engine) Valid(json string) bool {
 
 }
 
+func (e *Engine) Update(query string) error {
+	lex := parser.NewLex(query)
+	statements := parser.Parse(lex)
+	if lex.ErrorInfo != nil {
+		return lex.ErrorInfo
+	}
+	e.statement = statements
+	e.selectStatement = parser.Info(statements[0])
+	return nil
+}
+
 func (e *Engine) valid(json *gjson.Result) bool {
 	return Valid(e.selectStatement.WhereCondition.Left, e.selectStatement.WhereCondition.Right, e.selectStatement.WhereCondition.Op, json)
 }
