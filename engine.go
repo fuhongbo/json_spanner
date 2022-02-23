@@ -53,6 +53,9 @@ func (e *Engine) Update(query string) error {
 }
 
 func (e *Engine) valid(json *gjson.Result) bool {
+	if e.selectStatement.WhereCondition == nil {
+		return true
+	}
 	return Valid(e.selectStatement.WhereCondition.Left, e.selectStatement.WhereCondition.Right, e.selectStatement.WhereCondition.Op, json)
 }
 
