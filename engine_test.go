@@ -104,3 +104,30 @@ func TestEngine_SIMPLE_QUERY_Transform(t *testing.T) {
 		})
 	})
 }
+
+func TestEngine_SIMPLE_QUERY_Transform_SELETCTALL(t *testing.T) {
+
+	Convey("Given a query for engine", t, func() {
+		eng, _ := NewQuery("select * where test.a=1 and (b=2 or c=4)")
+
+		Convey("When give a json match this condition", func() {
+			result, jsonStr, err := eng.Transform(`{"test":{"a":1},"b":3,"c":4}`)
+			So(result, ShouldBeTrue)
+			So(err, ShouldBeNil)
+
+			var json1 map[string]interface{}
+			var json2 map[string]interface{}
+			_ = json.Unmarshal([]byte(jsonStr), &json1)
+			_ = json.Unmarshal([]byte(`{
+    "c": 4,
+    "x": {
+        "b": 3,
+        "d": 6.8,
+        "t": 1
+    }
+}`), &json2)
+			So(reflect.DeepEqual(json1, json2), ShouldBeTrue)
+
+		})
+	})
+}

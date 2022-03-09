@@ -104,6 +104,9 @@ FIELDS:
     }
 
 FIELD:
+    STAR {
+    	$$ = &Field{Type:"ALL"}
+    }|
     NAME ALIAS {
         $$ = &Field{Type:"NAME",Name: $1 ,Alias:$2}
     }|

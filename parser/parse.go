@@ -102,7 +102,7 @@ const yyEofCode = 1
 const yyErrCode = 2
 const yyInitialStackSize = 16
 
-//line parse.y:194
+//line parse.y:197
 
 //line yacctab:1
 var yyExca = [...]int{
@@ -113,58 +113,58 @@ var yyExca = [...]int{
 
 const yyPrivate = 57344
 
-const yyLast = 57
+const yyLast = 58
 
 var yyAct = [...]int{
-	5, 15, 13, 46, 29, 28, 28, 7, 21, 22,
-	29, 28, 16, 18, 19, 17, 14, 30, 16, 18,
-	19, 17, 9, 12, 11, 10, 40, 43, 24, 41,
-	42, 44, 45, 47, 20, 6, 6, 23, 31, 39,
-	48, 32, 33, 34, 35, 36, 37, 38, 25, 26,
-	27, 4, 8, 6, 3, 2, 1,
+	5, 16, 14, 47, 30, 29, 29, 7, 22, 9,
+	30, 29, 15, 23, 17, 19, 20, 18, 31, 10,
+	13, 12, 11, 17, 19, 20, 18, 41, 44, 25,
+	42, 43, 45, 46, 48, 21, 6, 24, 4, 32,
+	6, 49, 33, 34, 35, 36, 37, 38, 39, 26,
+	27, 28, 6, 40, 8, 3, 2, 1,
 }
 
 var yyPact = [...]int{
-	47, -1000, -1000, -1000, 4, -1000, 0, 29, -13, 21,
-	21, 21, 21, -20, 0, 32, -1000, -1000, -1000, -1000,
-	8, -1000, 4, -1000, 9, -1000, -1000, -1000, 0, 0,
-	-14, -6, -1000, -1000, -1000, -1000, -1000, -1000, -1000, 30,
-	-1000, -1000, -1000, -1000, -1000, -19, -1000, -1000, -1000,
+	34, -1000, -1000, -1000, 1, -1000, -4, 30, -9, -1000,
+	22, 22, 22, 22, -20, -4, 33, -1000, -1000, -1000,
+	-1000, 9, -1000, 1, -1000, 10, -1000, -1000, -1000, -4,
+	-4, -14, 5, -1000, -1000, -1000, -1000, -1000, -1000, -1000,
+	46, -1000, -1000, -1000, -1000, -1000, -19, -1000, -1000, -1000,
 }
 
 var yyPgo = [...]int{
-	0, 56, 55, 54, 52, 7, 39, 2, 0, 1,
-	37, 38,
+	0, 57, 56, 55, 54, 7, 53, 2, 0, 1,
+	37, 39,
 }
 
 var yyR1 = [...]int{
 	0, 1, 2, 3, 3, 3, 5, 5, 4, 4,
-	4, 4, 10, 10, 6, 6, 8, 8, 7, 7,
-	7, 7, 11, 11, 11, 11, 11, 11, 11, 9,
-	9, 9, 9,
+	4, 4, 4, 10, 10, 6, 6, 8, 8, 7,
+	7, 7, 7, 11, 11, 11, 11, 11, 11, 11,
+	9, 9, 9, 9,
 }
 
 var yyR2 = [...]int{
-	0, 1, 1, 5, 3, 1, 1, 3, 2, 2,
-	2, 2, 0, 2, 1, 1, 2, 0, 3, 3,
-	3, 3, 1, 1, 1, 1, 1, 1, 1, 1,
-	1, 1, 1,
+	0, 1, 1, 5, 3, 1, 1, 3, 1, 2,
+	2, 2, 2, 0, 2, 1, 1, 2, 0, 3,
+	3, 3, 3, 1, 1, 1, 1, 1, 1, 1,
+	1, 1, 1, 1,
 }
 
 var yyChk = [...]int{
-	-1000, -1, -2, -3, 4, -8, 6, -5, -4, 18,
-	21, 20, 19, -7, 16, -9, 18, 21, 19, 20,
-	5, -8, 22, -10, 7, -10, -10, -10, 25, 24,
-	-7, -11, 9, 10, 11, 12, 13, 14, 15, -6,
-	18, 21, -5, 18, -7, -7, 17, -9, -8,
+	-1000, -1, -2, -3, 4, -8, 6, -5, -4, 8,
+	18, 21, 20, 19, -7, 16, -9, 18, 21, 19,
+	20, 5, -8, 22, -10, 7, -10, -10, -10, 25,
+	24, -7, -11, 9, 10, 11, 12, 13, 14, 15,
+	-6, 18, 21, -5, 18, -7, -7, 17, -9, -8,
 }
 
 var yyDef = [...]int{
-	17, -2, 1, 2, 0, 5, 0, 17, 6, 12,
-	12, 12, 12, 16, 0, 0, 29, 30, 31, 32,
-	0, 4, 0, 8, 0, 9, 10, 11, 0, 0,
-	0, 0, 22, 23, 24, 25, 26, 27, 28, 17,
-	14, 15, 7, 13, 20, 21, 18, 19, 3,
+	18, -2, 1, 2, 0, 5, 0, 18, 6, 8,
+	13, 13, 13, 13, 17, 0, 0, 30, 31, 32,
+	33, 0, 4, 0, 9, 0, 10, 11, 12, 0,
+	0, 0, 0, 23, 24, 25, 26, 27, 28, 29,
+	18, 15, 16, 7, 14, 21, 22, 19, 20, 3,
 }
 
 var yyTok1 = [...]int{
@@ -193,7 +193,7 @@ var yyErrorMessages = [...]struct {
 
 var (
 	yyDebug        = 0
-	yyErrorVerbose = true
+	yyErrorVerbose = false
 )
 
 type yyLexer interface {
@@ -576,46 +576,46 @@ yydefault:
 			yyVAL.fields = append(yyDollar[3].fields, yyDollar[1].field)
 		}
 	case 8:
-		yyDollar = yyS[yypt-2 : yypt+1]
+		yyDollar = yyS[yypt-1 : yypt+1]
 //line parse.y:107
 		{
-			yyVAL.field = &Field{Type: "NAME", Name: yyDollar[1].str, Alias: yyDollar[2].str}
+			yyVAL.field = &Field{Type: "ALL"}
 		}
 	case 9:
 		yyDollar = yyS[yypt-2 : yypt+1]
 //line parse.y:110
 		{
-			yyVAL.field = &Field{Type: "STRING", ValueString: yyDollar[1].str, Alias: yyDollar[2].str}
+			yyVAL.field = &Field{Type: "NAME", Name: yyDollar[1].str, Alias: yyDollar[2].str}
 		}
 	case 10:
 		yyDollar = yyS[yypt-2 : yypt+1]
 //line parse.y:113
 		{
-			yyVAL.field = &Field{Type: "FLOAT", ValueFloat: yyDollar[1].float64, Alias: yyDollar[2].str}
+			yyVAL.field = &Field{Type: "STRING", ValueString: yyDollar[1].str, Alias: yyDollar[2].str}
 		}
 	case 11:
 		yyDollar = yyS[yypt-2 : yypt+1]
 //line parse.y:116
 		{
-			yyVAL.field = &Field{Type: "INT", ValueInt: yyDollar[1].int64, Alias: yyDollar[2].str}
+			yyVAL.field = &Field{Type: "FLOAT", ValueFloat: yyDollar[1].float64, Alias: yyDollar[2].str}
 		}
 	case 12:
+		yyDollar = yyS[yypt-2 : yypt+1]
+//line parse.y:119
+		{
+			yyVAL.field = &Field{Type: "INT", ValueInt: yyDollar[1].int64, Alias: yyDollar[2].str}
+		}
+	case 13:
 		yyDollar = yyS[yypt-0 : yypt+1]
-//line parse.y:120
+//line parse.y:123
 		{
 			yyVAL.str = ""
 		}
-	case 13:
+	case 14:
 		yyDollar = yyS[yypt-2 : yypt+1]
-//line parse.y:123
+//line parse.y:126
 		{
 			yyVAL.str = yyDollar[2].str
-		}
-	case 14:
-		yyDollar = yyS[yypt-1 : yypt+1]
-//line parse.y:128
-		{
-			yyVAL.source = &Source{Name: yyDollar[1].str}
 		}
 	case 15:
 		yyDollar = yyS[yypt-1 : yypt+1]
@@ -624,28 +624,28 @@ yydefault:
 			yyVAL.source = &Source{Name: yyDollar[1].str}
 		}
 	case 16:
-		yyDollar = yyS[yypt-2 : yypt+1]
-//line parse.y:136
+		yyDollar = yyS[yypt-1 : yypt+1]
+//line parse.y:134
 		{
-			yyVAL.expr = yyDollar[2].expr
+			yyVAL.source = &Source{Name: yyDollar[1].str}
 		}
 	case 17:
-		yyDollar = yyS[yypt-0 : yypt+1]
+		yyDollar = yyS[yypt-2 : yypt+1]
 //line parse.y:139
 		{
-			yyVAL.expr = nil
+			yyVAL.expr = yyDollar[2].expr
 		}
 	case 18:
-		yyDollar = yyS[yypt-3 : yypt+1]
-//line parse.y:144
+		yyDollar = yyS[yypt-0 : yypt+1]
+//line parse.y:142
 		{
-			yyVAL.expr = yyDollar[2].expr
+			yyVAL.expr = nil
 		}
 	case 19:
 		yyDollar = yyS[yypt-3 : yypt+1]
 //line parse.y:147
 		{
-			yyVAL.expr = &ExprNode{Type: BinaryNode, Left: yyDollar[1].expr, Op: yyDollar[2].int, Right: yyDollar[3].expr}
+			yyVAL.expr = yyDollar[2].expr
 		}
 	case 20:
 		yyDollar = yyS[yypt-3 : yypt+1]
@@ -660,10 +660,10 @@ yydefault:
 			yyVAL.expr = &ExprNode{Type: BinaryNode, Left: yyDollar[1].expr, Op: yyDollar[2].int, Right: yyDollar[3].expr}
 		}
 	case 22:
-		yyDollar = yyS[yypt-1 : yypt+1]
-//line parse.y:158
+		yyDollar = yyS[yypt-3 : yypt+1]
+//line parse.y:156
 		{
-			yyVAL.int = yyDollar[1].int
+			yyVAL.expr = &ExprNode{Type: BinaryNode, Left: yyDollar[1].expr, Op: yyDollar[2].int, Right: yyDollar[3].expr}
 		}
 	case 23:
 		yyDollar = yyS[yypt-1 : yypt+1]
@@ -703,25 +703,31 @@ yydefault:
 		}
 	case 29:
 		yyDollar = yyS[yypt-1 : yypt+1]
-//line parse.y:181
+//line parse.y:179
 		{
-			yyVAL.expr = &ExprNode{Type: FieldNode, Name: yyDollar[1].str}
+			yyVAL.int = yyDollar[1].int
 		}
 	case 30:
 		yyDollar = yyS[yypt-1 : yypt+1]
 //line parse.y:184
 		{
-			yyVAL.expr = &ExprNode{Type: StringNode, StrVal: yyDollar[1].str}
+			yyVAL.expr = &ExprNode{Type: FieldNode, Name: yyDollar[1].str}
 		}
 	case 31:
 		yyDollar = yyS[yypt-1 : yypt+1]
 //line parse.y:187
 		{
-			yyVAL.expr = &ExprNode{Type: IntegerNode, IntVal: yyDollar[1].int64}
+			yyVAL.expr = &ExprNode{Type: StringNode, StrVal: yyDollar[1].str}
 		}
 	case 32:
 		yyDollar = yyS[yypt-1 : yypt+1]
 //line parse.y:190
+		{
+			yyVAL.expr = &ExprNode{Type: IntegerNode, IntVal: yyDollar[1].int64}
+		}
+	case 33:
+		yyDollar = yyS[yypt-1 : yypt+1]
+//line parse.y:193
 		{
 			yyVAL.expr = &ExprNode{Type: FloatNode, FloVal: yyDollar[1].float64}
 		}

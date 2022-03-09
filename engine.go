@@ -81,6 +81,8 @@ func (e *Engine) Transform(json string) (match bool, result string, err error) {
 
 		for _, item := range e.selectStatement.Fields {
 			switch item.Type {
+			case "ALL":
+				return true, json, nil
 			case "NAME":
 				if item.Alias != "" {
 					b.Set(item.Alias, jsonPath.Get(item.Name).Value())
