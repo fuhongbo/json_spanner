@@ -1,5 +1,5 @@
 // Package gjson provides searching for json strings.
-package json_spanner
+package gjson
 
 import (
 	"encoding/json"
@@ -853,7 +853,7 @@ func parseQuery(query string) (
 	for ; i < len(query); i++ {
 		if depth == 1 && j == 0 {
 			switch query[i] {
-			case '!', '=', '<', '>', '%':
+			case '!', '=', '<', '>', '%', '~':
 				// start of the value part
 				j = i
 				continue
@@ -901,6 +901,8 @@ func parseQuery(query string) (
 			opsz = 2
 		case value[0] == '>' && value[1] == '=':
 			opsz = 2
+		case value[0] == '~' && value[1] == '!':
+			opsz = 2
 		case value[0] == '=' && value[1] == '=':
 			value = value[1:]
 			opsz = 1
@@ -911,6 +913,8 @@ func parseQuery(query string) (
 		case value[0] == '=':
 			opsz = 1
 		case value[0] == '%':
+			opsz = 1
+		case value[0] == '~':
 			opsz = 1
 		}
 		op = value[:opsz]
@@ -1277,6 +1281,10 @@ func queryMatches(rp *arrayPathResult, value Result) bool {
 			return matchLimit(value.Str, rpv)
 		case "!%":
 			return !matchLimit(value.Str, rpv)
+		case "~":
+			return in(value.Str, strings.Split(rpv, ","))
+		case "~!":
+			return !in(value.Str, strings.Split(rpv, ","))
 		}
 	case Number:
 		rpvn, _ := strconv.ParseFloat(rpv, 64)
@@ -1293,6 +1301,10 @@ func queryMatches(rp *arrayPathResult, value Result) bool {
 			return value.Num > rpvn
 		case ">=":
 			return value.Num >= rpvn
+		case "~":
+			return in(value.Raw, strings.Split(rpv, ","))
+		case "~!":
+			return !in(value.Raw, strings.Split(rpv, ","))
 		}
 	case True:
 		switch rp.query.op {
@@ -1319,6 +1331,23 @@ func queryMatches(rp *arrayPathResult, value Result) bool {
 	}
 	return false
 }
+
+func in(target string, str_array []string) bool {
+
+	for _, element := range str_array {
+
+		if target == element {
+
+			return true
+
+		}
+
+	}
+
+	return false
+
+}
+
 func parseArray(c *parseContext, i int, path string) (int, bool) {
 	var pmatch, vesc, ok, hit bool
 	var val string

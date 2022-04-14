@@ -2,10 +2,11 @@ package json_spanner
 
 import (
 	"fmt"
+	"github.com/fuhongbo/json_spanner/gjson"
 	parser "github.com/fuhongbo/json_spanner/parser"
 	"github.com/fuhongbo/json_spanner/wildcard"
-	"github.com/tidwall/gjson"
 	"reflect"
+	"strings"
 )
 
 var floatType = reflect.TypeOf(float64(0))
@@ -106,7 +107,12 @@ func getValue(node *parser.ExprNode, json *gjson.Result) interface{} {
 	case parser.IntegerNode:
 		return node.IntVal
 	case parser.StringNode:
-		return node.StrVal
+		if strings.Contains(node.StrVal, ".#(") {
+			return len(json.Get(node.StrVal).Array())
+		} else {
+			return node.StrVal
+		}
+
 	}
 	return nil
 }

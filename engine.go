@@ -3,7 +3,10 @@ package json_spanner
 import (
 	"errors"
 	"github.com/fuhongbo/json_spanner/parser"
-	"github.com/tidwall/gjson"
+	"strings"
+
+	//"github.com/tidwall/gjson"
+	"github.com/fuhongbo/json_spanner/gjson"
 )
 
 type Engine struct {
@@ -92,7 +95,18 @@ func (e *Engine) Transform(json string) (match bool, result string, err error) {
 					//resultJson, _ = sjson.Set(resultJson, item.Name, jsonPath.Get(item.Name).Value())
 				}
 			case "STRING":
-				b.Set(item.Alias, item.ValueString)
+				if strings.Contains(item.ValueString, ".#(") {
+					ar := strings.Split(item.ValueString, ".#(")
+					if jsonPath.Get(ar[0]).IsArray() {
+						b.Set(item.Alias, jsonPath.Get(item.ValueString).Value())
+					} else {
+						b.Set(item.Alias, jsonPath.Get(ar[0]).Value())
+					}
+
+				} else {
+					b.Set(item.Alias, item.ValueString)
+				}
+
 				//resultJson, _ = sjson.Set(resultJson, item.Alias, item.ValueString)
 			case "FLOAT":
 				b.Set(item.Alias, item.ValueFloat)
